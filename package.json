@@ -1,0 +1,22 @@
+{
+  "name": "chowdhuryx-website",
+  "version": "1.0.0",
+  "description": "ChowdhuryX Organization LLC - AI Solutions Website",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx serve .",
+    "build": "echo 'Static site - no build required'",
+    "start": "npx serve ."
+  },
+  "keywords": [
+    "AI",
+    "website",
+    "chowdhuryx",
+    "solutions"
+  ],
+  "author": "ChowdhuryX Organization LLC",
+  "license": "MIT",
+  "devDependencies": {
+    "serve": "^14.2.0"
+  }
+}

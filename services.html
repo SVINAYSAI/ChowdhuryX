@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services | ChowdhuryX AI Solutions</title>
+    <meta name="description" content="Explore our comprehensive AI services - AI Receptionist, Chatbots, Smart Websites, and Custom AI Development solutions.">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --primary: #6366f1;
+            --primary-light: #818cf8;
+            --primary-dark: #4f46e5;
+            --secondary: #06b6d4;
+            --accent: #f43f5e;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --bg: #ffffff;
+            --bg-alt: #f8fafc;
+            --bg-card: #ffffff;
+            --text-dark: #0f172a;
+            --text-body: #475569;
+            --text-muted: #94a3b8;
+            --border: rgba(99, 102, 241, 0.1);
+            --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.04);
+            --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.06);
+            --shadow-lg: 0 12px 40px rgba(99, 102, 241, 0.12);
+            --shadow-xl: 0 25px 60px rgba(99, 102, 241, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text-body);
+            overflow-x: hidden;
+            line-height: 1.7;
+        }
+
+        .bg-decoration {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+            background: 
+                radial-gradient(ellipse at 80% 20%, rgba(99, 102, 241, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 20% 80%, rgba(6, 182, 212, 0.04) 0%, transparent 45%);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.65);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid rgba(99, 102, 241, 0.08);
+            transition: all 0.4s ease;
+        }
+
+        nav.scrolled {
+            padding: 0.7rem 5%;
+            background: rgba(255, 255, 255, 0.85);
+            box-shadow: var(--shadow-md);
+        }
+
+        .logo {
+            font-size: 1.9rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            text-decoration: none;
+            letter-spacing: -0.02em;
+        }
+
+        .logo .x-red {
+            color: #dc2626;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: var(--text-body);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--primary-dark);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .nav-cta {
+            padding: 0.7rem 1.8rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 20px rgba(99, 102, 241, 0.35);
+        }
+
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.45);
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+            padding: 0.5rem;
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 10rem 5% 5rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--bg-alt) 0%, var(--bg) 100%);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .page-header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 1rem;
+            letter-spacing: -0.03em;
+        }
+
+        .page-header h1 span {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            color: var(--text-body);
+            max-width: 700px;
+            margin: 0 auto;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 6rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2.5rem;
+        }
+
+        .service-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-xl);
+            border-color: rgba(99, 102, 241, 0.2);
+        }
+
+        .service-image {
+            width: 100%;
+            height: 220px;
+            overflow: hidden;
+            position: relative;
+            background: linear-gradient(135deg, var(--bg-alt) 0%, var(--bg) 100%);
+        }
+
+        .service-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 0.5s ease;
+        }
+
+        .service-card:hover .service-image img {
+            transform: scale(1.08);
+        }
+
+        .service-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            padding: 0.4rem 1rem;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(99, 102, 241, 0.15);
+            border-radius: 50px;
+            font-size: 0.8rem;
+            color: var(--primary-dark);
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .service-content {
+            padding: 1.8rem;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card h3 {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 0.8rem;
+            color: var(--text-dark);
+        }
+
+        .service-card > .service-content > p {
+            color: var(--text-body);
+            line-height: 1.7;
+            font-size: 0.98rem;
+            margin-bottom: 1.2rem;
+        }
+
+        .service-features {
+            list-style: none;
+            margin-top: auto;
+        }
+
+        .service-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.7rem;
+            color: var(--text-body);
+            margin-bottom: 0.6rem;
+            font-size: 0.92rem;
+        }
+
+        .service-features li i {
+            color: var(--success);
+            font-size: 0.9rem;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            background: var(--bg-alt);
+            border-radius: 40px;
+            padding: 5rem;
+            margin: 4rem 0;
+        }
+
+        .pricing-section h2 {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 3rem;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .pricing-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 24px;
+            padding: 2.5rem;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .pricing-card.featured {
+            border-color: var(--primary);
+            transform: scale(1.02);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pricing-card.featured::before {
+            content: 'Most Popular';
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 0.4rem 1.2rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.02) translateY(-8px);
+        }
+
+        .pricing-card h3 {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 0.5rem;
+        }
+
+        .pricing-card .price {
+            font-size: 3rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 1rem 0;
+        }
+
+        .pricing-card .price span {
+            font-size: 1rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .pricing-card p {
+            color: var(--text-body);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .pricing-features {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 2rem;
+        }
+
+        .pricing-features li {
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            margin-bottom: 0.7rem;
+            font-size: 0.9rem;
+            color: var(--text-body);
+        }
+
+        .pricing-features li i {
+            color: var(--success);
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 14px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.35s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+            cursor: pointer;
+            border: none;
+            font-size: 1rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            box-shadow: 0 8px 30px rgba(99, 102, 241, 0.35);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-xl);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: var(--primary);
+            border: 2px solid var(--border);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--primary);
+            background: rgba(99, 102, 241, 0.05);
+        }
+
+        /* CTA Section */
+        .cta {
+            margin: 0 5% 4rem;
+            padding: 5rem;
+            text-align: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 50%, var(--secondary) 100%);
+            border-radius: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cta::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="none" stroke="rgba(255,255,255,0.1)" stroke-width="0.5"/></svg>') center/200px;
+            opacity: 0.3;
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.1rem;
+            color: rgba(255,255,255,0.9);
+            margin-bottom: 2rem;
+        }
+
+        .btn-white {
+            background: white;
+            color: var(--primary-dark);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+        }
+
+        .btn-white:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--text-dark);
+            padding: 5rem 5% 2rem;
+            color: rgba(255,255,255,0.7);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 4rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-brand h3 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.6rem;
+            color: white;
+        }
+
+        .footer-brand .x-red {
+            color: #dc2626;
+        }
+
+        .footer-brand p {
+            color: rgba(255,255,255,0.6);
+            line-height: 1.8;
+            margin-bottom: 1.5rem;
+            font-size: 1rem;
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            width: 45px;
+            height: 45px;
+            border-radius: 14px;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255,255,255,0.7);
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        .footer-social a:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .footer-links h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: white;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.8rem;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.6);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-light);
+            padding-left: 4px;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2.5rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            color: rgba(255,255,255,0.4);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .pricing-grid { grid-template-columns: 1fr; }
+            .pricing-card.featured { transform: none; }
+            .pricing-card.featured:hover { transform: translateY(-8px); }
+            .footer-content { grid-template-columns: repeat(2, 1fr); }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: rgba(255,255,255,0.98); flex-direction: column; padding: 2rem; gap: 1.5rem; box-shadow: var(--shadow-lg); }
+            .nav-links.active { display: flex; }
+            .mobile-toggle { display: block; }
+            .page-header { padding: 8rem 5% 4rem; }
+            .page-header h1 { font-size: 2.5rem; }
+            .services-grid { grid-template-columns: 1fr; }
+            .pricing-section { padding: 3rem 2rem; border-radius: 24px; }
+            .cta { margin: 0 2rem 2rem; padding: 3rem 1.5rem; border-radius: 24px; }
+            .cta h2 { font-size: 1.8rem; }
+            .footer-content { grid-template-columns: 1fr; gap: 2.5rem; }
+            section { padding: 4rem 5%; }
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="bg-decoration"></div>
+
+    <!-- Navigation -->
+    <nav id="navbar">
+        <a href="index.html" class="logo">
+            Chowdhury<span class="x-red">X</span>
+        </a>
+        <ul class="nav-links" id="navLinks">
+            <li><a href="about.html">About</a></li>
+            <li><a href="services.html" class="active">Services</a></li>
+            <li><a href="process.html">Process</a></li>
+            <li><a href="contact.html" class="nav-cta">Get Started</a></li>
+        </ul>
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Toggle menu">
+            <i class="fas fa-bars"></i>
+        </button>
+    </nav>
+
+    <!-- Page Header -->
+    <header class="page-header">
+        <h1>Our <span>Services</span></h1>
+        <p>Comprehensive AI-powered solutions designed to transform your business operations, enhance customer experiences, and drive sustainable growth.</p>
+    </header>
+
+    <!-- Services Section -->
+    <section>
+        <div class="services-grid">
+            <div class="service-card fade-in">
+                <div class="service-image">
+                    <img src="assets/images/AlinaX.jpeg" alt="AI Receptionist Service">
+                    <span class="service-badge">Voice AI</span>
+                </div>
+                <div class="service-content">
+                    <h3>AI Receptionist</h3>
+                    <p>Intelligent voice systems that handle customer calls 24/7 with natural, human-like conversations. Never miss a call again.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> 24/7 automated call answering</li>
+                        <li><i class="fas fa-check-circle"></i> Natural voice interaction</li>
+                        <li><i class="fas fa-check-circle"></i> Appointment scheduling</li>
+                        <li><i class="fas fa-check-circle"></i> Multi-language support</li>
+                        <li><i class="fas fa-check-circle"></i> Call routing & transfer</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1531746790731-6c087fecd65a?w=400&h=250&fit=crop" alt="AI Chatbot Service">
+                    <span class="service-badge">Conversational AI</span>
+                </div>
+                <div class="service-content">
+                    <h3>AI Chatbot</h3>
+                    <p>Smart chatbots that engage website visitors instantly, answer questions, qualify leads, and guide customers through their journey.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Instant response to queries</li>
+                        <li><i class="fas fa-check-circle"></i> Lead qualification & capture</li>
+                        <li><i class="fas fa-check-circle"></i> Smart conversation routing</li>
+                        <li><i class="fas fa-check-circle"></i> Analytics dashboard</li>
+                        <li><i class="fas fa-check-circle"></i> Custom training on your data</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=250&fit=crop" alt="AI Website Development">
+                    <span class="service-badge">Web Development</span>
+                </div>
+                <div class="service-content">
+                    <h3>AI-Based Websites</h3>
+                    <p>Websites engineered for conversion with smart automation, personalization, and performance analytics built in from day one.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Conversion-optimized design</li>
+                        <li><i class="fas fa-check-circle"></i> Smart automation features</li>
+                        <li><i class="fas fa-check-circle"></i> SEO & performance optimized</li>
+                        <li><i class="fas fa-check-circle"></i> Analytics integration</li>
+                        <li><i class="fas fa-check-circle"></i> Mobile-first responsive</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?w=400&h=250&fit=crop" alt="Custom AI Development">
+                    <span class="service-badge">Custom Development</span>
+                </div>
+                <div class="service-content">
+                    <h3>Custom AI Development</h3>
+                    <p>Bespoke AI solutions tailored to your unique business needs - from automation workflows to intelligent data processing systems.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Bespoke solution design</li>
+                        <li><i class="fas fa-check-circle"></i> Process automation</li>
+                        <li><i class="fas fa-check-circle"></i> Data intelligence & analysis</li>
+                        <li><i class="fas fa-check-circle"></i> API integration</li>
+                        <li><i class="fas fa-check-circle"></i> Scalable architecture</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=400&h=250&fit=crop" alt="Remote IT Services">
+                    <span class="service-badge">Staffing</span>
+                </div>
+                <div class="service-content">
+                    <h3>Remote IT & Non-IT Services</h3>
+                    <p>Access skilled remote professionals for IT and non-IT operations including support, development, and backend services.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> Skilled professionals</li>
+                        <li><i class="fas fa-check-circle"></i> Flexible engagement models</li>
+                        <li><i class="fas fa-check-circle"></i> Cost-effective solutions</li>
+                        <li><i class="fas fa-check-circle"></i> Quality assurance</li>
+                        <li><i class="fas fa-check-circle"></i> Time zone flexibility</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="service-card fade-in">
+                <div class="service-image">
+                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?w=400&h=250&fit=crop" alt="AI Strategy Consulting">
+                    <span class="service-badge">Consulting</span>
+                </div>
+                <div class="service-content">
+                    <h3>AI Strategy Consulting</h3>
+                    <p>Expert guidance on AI implementation strategy, technology selection, and roadmap development for digital transformation.</p>
+                    <ul class="service-features">
+                        <li><i class="fas fa-check-circle"></i> AI readiness assessment</li>
+                        <li><i class="fas fa-check-circle"></i> Technology roadmap</li>
+                        <li><i class="fas fa-check-circle"></i> ROI analysis</li>
+                        <li><i class="fas fa-check-circle"></i> Implementation planning</li>
+                        <li><i class="fas fa-check-circle"></i> Change management</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section">
+        <h2>Simple, Transparent Pricing</h2>
+        <div class="pricing-grid">
+            <div class="pricing-card fade-in">
+                <h3>Starter</h3>
+                <div class="price">$499<span>/month</span></div>
+                <p>Perfect for small businesses getting started with AI</p>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> AI Chatbot (1,000 conversations)</li>
+                    <li><i class="fas fa-check"></i> Basic website integration</li>
+                    <li><i class="fas fa-check"></i> Email support</li>
+                    <li><i class="fas fa-check"></i> Monthly analytics report</li>
+                </ul>
+                <a href="contact.html" class="btn btn-outline">Get Started</a>
+            </div>
+
+            <div class="pricing-card featured fade-in">
+                <h3>Professional</h3>
+                <div class="price">$1,499<span>/month</span></div>
+                <p>Complete AI solution for growing businesses</p>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> AI Chatbot (unlimited)</li>
+                    <li><i class="fas fa-check"></i> AI Receptionist</li>
+                    <li><i class="fas fa-check"></i> AI-powered website</li>
+                    <li><i class="fas fa-check"></i> Priority support (24/7)</li>
+                    <li><i class="fas fa-check"></i> Custom training & setup</li>
+                    <li><i class="fas fa-check"></i> Real-time analytics</li>
+                </ul>
+                <a href="contact.html" class="btn btn-primary">Get Started</a>
+            </div>
+
+            <div class="pricing-card fade-in">
+                <h3>Enterprise</h3>
+                <div class="price">Custom<span></span></div>
+                <p>Tailored solutions for large organizations</p>
+                <ul class="pricing-features">
+                    <li><i class="fas fa-check"></i> Everything in Professional</li>
+                    <li><i class="fas fa-check"></i> Custom AI development</li>
+                    <li><i class="fas fa-check"></i> Dedicated account manager</li>
+                    <li><i class="fas fa-check"></i> SLA guarantee</li>
+                    <li><i class="fas fa-check"></i> On-premise deployment</li>
+                    <li><i class="fas fa-check"></i> Advanced security features</li>
+                </ul>
+                <a href="contact.html" class="btn btn-outline">Contact Sales</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="cta-content">
+            <h2>Not Sure Which Plan?</h2>
+            <p>Let's discuss your needs and find the perfect solution for your business.</p>
+            <a href="contact.html" class="btn btn-white">
+                <i class="fas fa-phone"></i> Schedule a Call
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-brand">
+                <h3>
+                    Chowdhury<span class="x-red">X</span>
+                </h3>
+                <p>ChowdhuryX Organization LLC is a USA-Based AI & Software Company dedicated to delivering cutting-edge technology solutions.</p>
+                <div class="footer-social">
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                    <a href="mailto:contact@chowdhuryx.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                </div>
+            </div>
+            <div class="footer-links">
+                <h4>Services</h4>
+                <ul>
+                    <li><a href="services.html">AI Receptionist</a></li>
+                    <li><a href="services.html">AI Chatbot</a></li>
+                    <li><a href="services.html">AI Websites</a></li>
+                    <li><a href="services.html">Custom AI</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="process.html">Our Process</a></li>
+                    <li><a href="#">Careers</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>Connect</h4>
+                <ul>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">GitHub</a></li>
+                    <li><a href="mailto:contact@chowdhuryx.com">Email</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2024 ChowdhuryX Organization LLC. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            navbar.classList.toggle('scrolled', window.scrollY > 50);
+        });
+
+        // Mobile menu toggle
+        const mobileToggle = document.getElementById('mobileToggle');
+        const navLinks = document.getElementById('navLinks');
+        
+        mobileToggle.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            const icon = mobileToggle.querySelector('i');
+            icon.classList.toggle('fa-bars');
+            icon.classList.toggle('fa-times');
+        });
+
+        // Scroll animations
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry, index) => {
+                if (entry.isIntersecting) {
+                    setTimeout(() => entry.target.classList.add('visible'), index * 100);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
+</body>
+</html>
